@@ -58,6 +58,12 @@ builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    
+    options.User.RequireUniqueEmail = true;
+
+});
 
 var app = builder.Build();
 

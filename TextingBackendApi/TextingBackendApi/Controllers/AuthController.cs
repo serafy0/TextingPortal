@@ -43,7 +43,7 @@ namespace TextingBackendApi.Controllers
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
 
-            await _userManager.AddToRoleAsync(user, "Viewer");
+            await _userManager.AddToRoleAsync(user, "Sender");
 
             return Ok(new { message = "User registered successfully" });
         }
@@ -66,7 +66,7 @@ namespace TextingBackendApi.Controllers
 
             var token = await _jwtHandler.GetTokenAsync(user);
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-            return Ok(new LoginResponseDTO{ Jwt=jwt,Id =user.Id,Username= user.UserName });
+            return Ok(new LoginResponseDTO{ Token=jwt,Email =user.Email,Username= user.UserName });
         }
         [HttpGet("test")]
         [Authorize]
