@@ -24,7 +24,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
     <PackageReference Include="Scalar.AspNetCore" Version="2.0.12" />
+    <PackageReference Include="Scriban" Version="5.12.1" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.0.2" />
+    <PackageReference Include="Twilio" Version="7.8.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Managers\MessageManager\" />
   </ItemGroup>
 
 </Project>
