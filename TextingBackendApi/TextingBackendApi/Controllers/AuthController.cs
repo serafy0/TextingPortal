@@ -66,7 +66,8 @@ namespace TextingBackendApi.Controllers
 
             var token = await _jwtHandler.GetTokenAsync(user);
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-            return Ok(new LoginResponseDTO{ Token=jwt,Email =user.Email,Username= user.UserName });
+            var roles = await _userManager.GetRolesAsync(user);
+            return Ok(new LoginResponseDTO{ Token=jwt,Email =user.Email,Username= user.UserName, Role=roles.First() });
         }
         [HttpGet("test")]
         [Authorize]
