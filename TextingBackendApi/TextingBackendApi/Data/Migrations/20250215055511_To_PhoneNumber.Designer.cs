@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TextingBackendApi.Data.Context;
 
@@ -11,9 +12,11 @@ using TextingBackendApi.Data.Context;
 namespace TextingBackendApi.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250215055511_To_PhoneNumber")]
+    partial class To_PhoneNumber
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,6 +231,9 @@ namespace TextingBackendApi.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("MessageTemplateId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ParsedBody")
                         .IsRequired()
                         .HasMaxLength(1600)
@@ -238,6 +244,8 @@ namespace TextingBackendApi.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MessageTemplateId");
 
                     b.HasIndex("SentById");
 
@@ -390,6 +398,10 @@ namespace TextingBackendApi.Data.Migrations
 
             modelBuilder.Entity("TextingBackendApi.Data.Models.MessageLog", b =>
                 {
+                    b.HasOne("TextingBackendApi.Data.Models.MessageTemplate", null)
+                        .WithMany("MessageLogs")
+                        .HasForeignKey("MessageTemplateId");
+
                     b.HasOne("TextingBackendApi.Data.Models.ApplicationUser", "SentBy")
                         .WithMany("MessageLogs")
                         .HasForeignKey("SentById")
@@ -425,6 +437,11 @@ namespace TextingBackendApi.Data.Migrations
             modelBuilder.Entity("TextingBackendApi.Data.Models.MessageLog", b =>
                 {
                     b.Navigation("Messages");
+                });
+
+            modelBuilder.Entity("TextingBackendApi.Data.Models.MessageTemplate", b =>
+                {
+                    b.Navigation("MessageLogs");
                 });
 
             modelBuilder.Entity("TextingBackendApi.Data.Models.PhoneNumList", b =>
