@@ -1,0 +1,21 @@
+.row {
+  cursor: pointer;
+  transition: background-color 150ms ease;
+
+  &:hover {
+    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+  }
+
+  td:first-of-type {
+    width: 100%;
+  }
+}
+
+.actionButton {
+  opacity: 0.8;
+  transition: opacity 150ms ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}

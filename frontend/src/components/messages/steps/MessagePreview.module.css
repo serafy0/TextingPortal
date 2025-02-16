@@ -1,0 +1,39 @@
+.title {
+  background: linear-gradient(45deg, var(--mantine-color-blue-filled) 0%, var(--mantine-color-cyan-filled) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: rem(32px);
+  margin-bottom: var(--mantine-spacing-xl);
+}
+
+.card {
+  background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
+  transition: transform 200ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.section {
+  background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-8));
+}
+
+.message {
+  font-family: var(--mantine-font-family-monospace);
+  font-size: var(--mantine-font-size-sm);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  padding: var(--mantine-spacing-xs);
+  background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9));
+  border-radius: var(--mantine-radius-sm);
+}
+
+.button {
+  background: linear-gradient(45deg, var(--mantine-color-blue-filled) 0%, var(--mantine-color-cyan-filled) 100%);
+  transition: transform 200ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}

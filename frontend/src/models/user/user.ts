@@ -1,10 +1,12 @@
 export interface UserProfileToken {
-    userName: string;
+    username: string;
     email: string;
     token: string;
+    role:string
   };
   
   export interface UserProfile  {
-    userName: string;
+    username: string;
     email: string;
+    role?:string
   };

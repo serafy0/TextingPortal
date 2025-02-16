@@ -1,0 +1,40 @@
+.title {
+  background: linear-gradient(45deg, var(--mantine-color-blue-filled) 0%, var(--mantine-color-cyan-filled) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: var(--mantine-spacing-xl);
+}
+
+.card {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--mantine-shadow-md);
+  }
+}
+
+.listItem {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--mantine-shadow-sm);
+  }
+}
+
+.listCard {
+  cursor: pointer;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--mantine-shadow-md);
+  }
+
+  /* Add a subtle highlight for selected cards */
+  &[data-selected="true"] {
+    background-color: light-dark(var(--mantine-color-blue-0), var(--mantine-color-blue-9));
+  }
+}

@@ -1,15 +1,14 @@
-import axios from "axios";
+import apiClient from "./apiClient";
 import { handleError } from "../Helpers/ErrorHandler";
 import { UserProfileToken } from "../models/user/user";
 import { RegisterDTO } from "../models/auth/RegisterDTO";
 
-const api = "https://localhost:44363/api/";
-
+// Login API call: uses our apiClient with interceptors
 export const loginAPI = async (email: string, password: string) => {
   try {
-    const data = await axios.post<UserProfileToken>(api + "Auth/login", {
-      email: email,
-      password: password,
+    const data = await apiClient.post<UserProfileToken>("Auth/login", {
+      email,
+      password,
     });
     return data;
   } catch (error) {
@@ -17,11 +16,10 @@ export const loginAPI = async (email: string, password: string) => {
   }
 };
 
-export const registerAPI = async (
-  user:RegisterDTO
-) => {
+// Register API call: uses our apiClient with interceptors
+export const registerAPI = async (user: RegisterDTO) => {
   try {
-    const data = await axios.post<UserProfileToken>(api + "Auth/register", {
+    const data = await apiClient.post<UserProfileToken>("Auth/register", {
       email: user.email,
       username: user.username,
       password: user.password,

@@ -10,7 +10,7 @@ type UserContextType = {
   user: UserProfile | null;
   token: string | null;
   registerUser: (email: string, username: string, password: string) => void;
-  loginUser: (username: string, password: string) => void;
+  loginUser: (email: string, password: string) => void;
   logout: () => void;
   isLoggedIn: () => boolean;
 };
@@ -26,54 +26,49 @@ export const UserProvider = ({ children }: Props) => {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
-    if (user && token) {
-      setUser(JSON.parse(user));
-      setToken(token);
-      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    const storedUser = localStorage.getItem("user");
+    const storedToken = localStorage.getItem("token");
+    if (storedUser && storedToken) {
+      setUser(JSON.parse(storedUser));
+      setToken(storedToken);
+      axios.defaults.headers.common["Authorization"] = "Bearer " + storedToken;
     }
     setIsReady(true);
   }, []);
 
-  const registerUser = async (
-    email: string,
-    username: string,
-    password: string
-  ) => {
-    await registerAPI({email, username, password})
+  const registerUser = async (email: string, username: string, password: string) => {
+    await registerAPI({ email, username, password })
       .then((res) => {
         if (res) {
-          
           navigate("/login");
         }
       })
-      .catch((e) => BasicNotification("Server error occured"));
+      .catch(() => BasicNotification("Server error occurred"));
   };
 
   const loginUser = async (email: string, password: string) => {
     return await loginAPI(email, password)
       .then((res) => {
-
         if (res) {
-            console.log(res);
-            if(res.status === 400){
-                BasicNotification("Invalid credentials");
-            }
-
-          localStorage.setItem("token", res?.data.token);
+          // Optionally handle 400 status if needed
+          if (res.status === 400) {
+            BasicNotification("Invalid credentials");
+            return;
+          }
+          localStorage.setItem("token", res.data.token);
           const userObj = {
-            userName: res?.data.userName,
-            email: res?.data.email,
+            username: res.data.username,
+            email: res.data.email,
+            role: res.data.role,
           };
           localStorage.setItem("user", JSON.stringify(userObj));
-          setToken(res?.data.token!);
-          setUser(userObj!);
+          setToken(res.data.token);
+          setUser(userObj);
           BasicNotification("Login Success!");
           navigate("/dashboard");
         }
       })
-      .catch((e) => BasicNotification("Server error occured"));
+      .catch(() => BasicNotification("Server error occurred"));
   };
 
   const isLoggedIn = () => {
@@ -84,7 +79,7 @@ export const UserProvider = ({ children }: Props) => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser(null);
-    setToken("");
+    setToken(null);
     navigate("/login");
   };
 

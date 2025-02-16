@@ -4,8 +4,6 @@ import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 
 import { MantineProvider } from '@mantine/core';
-import { UserProvider } from './Context/useAuth';
-import { Outlet, RouterProvider } from 'react-router-dom';
 import { AppRouter } from './routes/Routes';
 import { Notifications } from '@mantine/notifications';
 
