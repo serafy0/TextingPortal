@@ -2,7 +2,7 @@ import axios from "axios";
 import { BasicNotification } from "../Helpers/NotificationHelper";
 
 const apiClient = axios.create({
-  baseURL: "https://localhost:44363/api/",
+  baseURL: import.meta.env.VITE_API_BASE_URL || "https://localhost:44363/api/",
 });
 
 // Request interceptor: attach bearer token (from localStorage) to every request except login/register

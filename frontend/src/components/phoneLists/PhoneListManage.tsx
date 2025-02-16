@@ -94,7 +94,7 @@ export function PhoneListManage() {
           await addPhoneNumbersToList(Number(id), validNumbers);
           basicNotification(`Added ${validNumbers.length} numbers successfully`);
           if (validNumbers.length < numbers.length) {
-            basicNotification(`Skipped ${numbers.length - validNumbers.length} invalid numbers`, 'warning');
+            basicNotification(`Skipped ${numbers.length - validNumbers.length} invalid numbers`);
           }
           fetchList();
         } catch (error) {
@@ -104,7 +104,7 @@ export function PhoneListManage() {
         }
       },
       error: (error) => {
-        basicNotification(`Failed to read CSV file: ${error.message}`, 'error');
+        basicNotification(`Failed to read CSV file: ${error.message}`);
         setLoading(false);
       }
     });
@@ -150,7 +150,7 @@ export function PhoneListManage() {
             accept=".csv"
           >
             {(props) => (
-              <Button {...props} leftIcon={<IconUpload size={16} />}>
+              <Button {...props}>
                 Upload CSV
               </Button>
             )}
@@ -169,7 +169,7 @@ export function PhoneListManage() {
               error={error}
               style={{ flex: 1 }}
             />
-            <Button type="submit" leftIcon={<IconPlus size={16} />}>
+            <Button type="submit">
               Add Number
             </Button>
           </Group>

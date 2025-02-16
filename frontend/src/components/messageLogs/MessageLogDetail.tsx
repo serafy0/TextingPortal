@@ -88,12 +88,12 @@ export function MessageLogDetailView() {
 
   return (
     <Paper p="md">
-      <Stack spacing="md">
+      <Stack >
         <Title order={2}>Message Log Detail</Title>
         
         <Text size="lg">Message: {log.parsedBody}</Text>
 
-        <Group position="apart" mb="md">
+        <Group  mb="md">
           <TextInput
             placeholder="Search messages..."
             value={search}
@@ -102,14 +102,14 @@ export function MessageLogDetailView() {
           />
           <Group>
             <Button 
-              leftIcon={<IconDownload size={16} />}
+              leftSection={<IconDownload size={16} />}
               onClick={handleExport}
               variant="light"
             >
               Export CSV
             </Button>
             <Button 
-              leftIcon={<IconFileTypePdf size={16} />}
+              leftSection={<IconFileTypePdf size={16} />}
               onClick={handleExportPDF}
               color="red"
             >

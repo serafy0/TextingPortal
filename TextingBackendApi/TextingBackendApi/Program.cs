@@ -15,7 +15,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins(builder.Configuration["CORS:Link"]).AllowAnyMethod().AllowAnyHeader();
+        policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
     });
 });
 
@@ -78,6 +78,9 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
+    app.MapOpenApi();
+    app.MapScalarApiReference();
+
     app.UseExceptionHandler("/error");
 }
 
