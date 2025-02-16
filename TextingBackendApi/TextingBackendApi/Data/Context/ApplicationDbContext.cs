@@ -10,5 +10,14 @@ namespace TextingBackendApi.Data.Context
             : base(options)
         {
         }
+
+        public DbSet<TwilioMessage> TwilioMessages { get; set; }
+        public DbSet<MessageLog> MessageLogs { get; set; }
+        public DbSet<MessageTemplate> MessageTemplates { get; set; }
+
+        public DbSet<PhoneNumber> PhoneNumbers { get; set; }
+
+        public DbSet<PhoneNumList> PhoneNumLists { get; set; }
+
     }
 }
