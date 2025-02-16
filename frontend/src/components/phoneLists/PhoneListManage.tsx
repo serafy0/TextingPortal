@@ -141,7 +141,7 @@ export function PhoneListManage() {
     <Paper p="md" pos="relative">
       <LoadingOverlay visible={loading} />
       
-      <Stack spacing="xl">
+      <Stack>
         <Title order={2}>{list?.title} - Phone Numbers</Title>
 
         <Group>
