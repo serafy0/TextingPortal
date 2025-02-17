@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Table, TextInput, Group, Pagination, Paper, Title, Button, Modal, Stack } from '@mantine/core';
+import { Table, TextInput, Group, Pagination, Paper, Title, Button, Modal } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { IconSearch, IconPlus } from '@tabler/icons-react';
 import { getPhoneLists, deletePhoneList } from '../../services/phoneListService';
@@ -53,9 +53,9 @@ export function PhoneListsList() {
 
   return (
     <Paper p="md">
-      <Group position="apart" mb="md">
+      <Group  mb="md">
         <Title order={2}>Phone Lists</Title>
-        <Button leftIcon={<IconPlus size={16} />} onClick={open}>
+        <Button leftSection={<IconPlus size={16} />} onClick={open}>
           Create List
         </Button>
       </Group>

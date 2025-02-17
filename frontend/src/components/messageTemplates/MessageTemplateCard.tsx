@@ -34,7 +34,7 @@ export function MessageTemplateCard({
           <Text fw={500} truncate>
             {template.title}
           </Text>
-          <Menu withinPortal position="bottom-end" shadow="sm">
+          <Menu withinPortal  shadow="sm">
             <Menu.Target>
               <ActionIcon variant="subtle" color="gray">
                 <IconDots size={16} />

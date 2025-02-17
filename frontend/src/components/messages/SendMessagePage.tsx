@@ -149,7 +149,7 @@ export function SendMessagePage() {
           <Button 
             onClick={handleSend} 
             color="green"
-            leftIcon={<IconSend size={18} />}
+            leftSection={<IconSend size={18} />}
             loading={loading}
             size="lg"
           >

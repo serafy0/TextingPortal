@@ -1,4 +1,4 @@
-import { Paper, Text, Group, Stack, Card, Container, Title } from '@mantine/core';
+import { Text, Group, Stack, Card, Container, Title } from '@mantine/core';
 import { IconTemplate, IconList } from '@tabler/icons-react';
 import classes from './MessagePreview.module.css';
 
@@ -12,12 +12,12 @@ interface MessagePreviewProps {
 export function MessagePreview({ template, messageBody, selectedLists }: MessagePreviewProps) {
   return (
     <Container size="xl">
-      <Stack spacing="xl">
+      <Stack>
         <Title ta="center" className={classes.title}>Review Your Message</Title>
 
         <Card withBorder radius="md" className={classes.card}>
           <Card.Section withBorder inheritPadding py="xs" className={classes.section}>
-            <Group position="apart">
+            <Group >
               <Group>
                 <IconTemplate size={20} />
                 <Text fw={500}>Template</Text>
@@ -27,14 +27,14 @@ export function MessagePreview({ template, messageBody, selectedLists }: Message
           </Card.Section>
 
           <Card.Section withBorder inheritPadding py="lg" className={classes.section}>
-            <Stack spacing="xs">
+            <Stack >
               <Text fw={500}>Message</Text>
               <Text className={classes.message}>{messageBody}</Text>
             </Stack>
           </Card.Section>
 
           <Card.Section withBorder inheritPadding py="xs" className={classes.section}>
-            <Stack spacing="xs">
+            <Stack>
               <Group>
                 <IconList size={20} />
                 <Text fw={500}>Selected Lists</Text>

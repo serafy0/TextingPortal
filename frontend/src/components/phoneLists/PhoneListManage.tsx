@@ -6,7 +6,6 @@ import {
 } from '@mantine/core';
 import { parse } from 'papaparse';
 import { z } from 'zod';
-import { IconUpload, IconPlus } from '@tabler/icons-react';
 import { getPhoneListWithNumbers, addPhoneNumbersToList } from '../../services/phoneListService';
 import { BasicNotification as basicNotification } from '../../Helpers/NotificationHelper';
 

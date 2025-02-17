@@ -1,3 +1,4 @@
+import { SetStateAction } from 'react';
 import apiClient from './apiClient';
 
 interface CreateMessageTemplate{
@@ -18,7 +19,9 @@ export const getMessageTemplates = async (params: {
     filterColumn?: string;
     filterQuery?: string;
 }) => {
-    const response = await apiClient.get<{ data: ReadMessageTemplateDTO[] }>('/MessageTemplates', { params });
+    const response = await apiClient.get<{
+      totalPages: SetStateAction<number>; data: ReadMessageTemplateDTO[] 
+}>('/MessageTemplates', { params });
     return response.data;
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppShell, Burger, Group, Text, Code, ScrollArea } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { IconGauge, IconNotes, IconMessage, IconHistory, IconAddressBook } from '@tabler/icons-react';
 import { useAuth } from '../../Context/useAuth';
 import { NavbarLinksGroup } from './NavbarLinksGroup/NavbarLinksGroup';
@@ -12,6 +12,12 @@ export function DashboardLayout() {
   const [opened, { toggle }] = useDisclosure();
   const isMobile = useMediaQuery('(max-width: 768px)');
   const { user } = useAuth();
+  const location = useLocation(); 
+
+  React.useEffect(() => {
+    if (isMobile && opened) toggle();
+  }, [location]);
+
 
   const navigationData = [
     { 

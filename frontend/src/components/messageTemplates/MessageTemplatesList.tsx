@@ -7,7 +7,6 @@ import { getMessageTemplates, deleteMessageTemplate } from '../../services/messa
 import { MessageTemplateCard } from './MessageTemplateCard';
 import { MessageTemplateForm } from './MessageTemplateForm';
 import {BasicNotification as  basicNotification } from '../../Helpers/NotificationHelper';
-import classes from './MessageTemplatesList.module.css';
 
 interface ListProps {
   selectable?: boolean;
@@ -18,8 +17,6 @@ interface ListProps {
 
 export function MessageTemplatesList({ 
   selectable = false, 
-  senderMode = false,
-  onTemplateSelect,
   onSelectionChange 
 }: ListProps) {
   const [templates, setTemplates] = useState<any[]>([]);
@@ -33,7 +30,6 @@ export function MessageTemplatesList({
   const [deleteId, setDeleteId] = useState<number | null>(null);
   const [deleteModalOpened, { open: openDelete, close: closeDelete }] = useDisclosure(false);
   const [editModalOpened, { open: openEdit, close: closeEdit }] = useDisclosure(false);
-  const navigate = useNavigate();
 
   const fetchTemplates = async () => {
     try {
@@ -91,15 +87,15 @@ export function MessageTemplatesList({
     fetchTemplates();
   };
 
-  const handleCardClick = (template: any) => {
-    if (senderMode && onTemplateSelect) {
-      onTemplateSelect(template);
-    }
-  };
+  // const handleCardClick = (template: any) => {
+  //   if (senderMode && onTemplateSelect) {
+  //     onTemplateSelect(template);
+  //   }
+  // };
 
   return (
     <Paper p="md">
-      <Group mb="md" position="apart">
+      <Group mb="md">
         <Group>
           <TextInput
             placeholder="Search templates..."
@@ -137,8 +133,6 @@ export function MessageTemplatesList({
               onSelect={handleSelect}
               onEdit={() => handleEdit(template.id)}
               onDelete={() => confirmDelete(template.id)}
-              onClick={() => handleCardClick(template)}
-              senderMode={senderMode}
             />
           </Grid.Col>
         ))}

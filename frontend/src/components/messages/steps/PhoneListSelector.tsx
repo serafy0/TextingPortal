@@ -50,7 +50,7 @@ export function PhoneListSelector({ selectedLists, onSelectionChange }: PhoneLis
 
   return (
     <Paper p="xl">
-      <Stack spacing="xl">
+      <Stack>
         <Group justify="center" mb="lg">
           <ThemeIcon size={42} radius="md">
             <IconAddressBook size={24} />
@@ -84,7 +84,7 @@ export function PhoneListSelector({ selectedLists, onSelectionChange }: PhoneLis
                   onClick={() => handleToggle(list)}
                   data-selected={selectedLists.some(l => l.id === list.id)}
                 >
-                  <Group position="apart">
+                  <Group >
                     <Text fw={500} size="lg">{list.title}</Text>
                     <Checkbox
                       checked={selectedLists.some(l => l.id === list.id)}
